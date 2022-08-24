@@ -2,15 +2,21 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepositry;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
+
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepositry();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
 
     /**
      * 회원가입
@@ -34,7 +40,7 @@ public class MemberService {
     /**
      * 전체 회원 조회
      */
-    public List<Member> findMember(){
+    public List<Member> findMembers(){
         return memberRepository.findAll();
     }
 
